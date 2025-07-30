@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 요구사항
 
-## Getting Started
+## 프로젝트 목표
 
-First, run the development server:
+Chat GPT와 유사한 채팅 AI Application을 구현하는 것입니다.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 사용하는 기술 스택
+
+- UI라이브러리
+    - TailwindCSS : https://tailwindcss.com/
+    - shadcn/ui : https://ui.shadcn.com/
+- AI SDK
+    - AI SDK : https://sdk.vercel.ai/docs/introduction
+
+## 환경 설정
+
+### OpenAI API 키 설정
+
+1. `.env.local` 파일을 프로젝트 루트에 생성합니다.
+2. 다음 내용을 추가합니다:
+
+```
+OPENAI_API_KEY=your_openai_api_key_here
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. `your_openai_api_key_here` 부분을 실제 OpenAI API 키로 교체합니다.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 구현 단계
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **프로젝트 초기 설치, 필요한 라이브러리 설정** ✅
+    - **목표**: 프로젝트를 시작하기 위한 기본 환경을 설정합니다.
+    - **작업**: 
+        - Node.js 및 npm이 설치되어 있는지 확인합니다.
+        - 새로운 프로젝트 디렉토리를 생성하고 초기화합니다.
+        - TailwindCSS와 shadcn/ui 라이브러리를 설치합니다.
+        - AI SDK를 설치하여 AI 기능을 사용할 수 있도록 설정합니다.
 
-## Learn More
+2. **App Router의 API Router 핸들러 구현** ✅
+    - **목표**: 클라이언트 요청을 처리하고 AI와의 상호작용을 관리하는 백엔드 로직을 작성합니다.
+    - **작업**:
+        - Next.js의 API 라우터를 설정합니다.
+        - AI SDK를 사용하여 AI와의 통신을 위한 엔드포인트를 구현합니다.
+        - 클라이언트로부터의 요청을 처리하고, AI의 응답을 클라이언트에 반환하는 로직을 작성합니다.
 
-To learn more about Next.js, take a look at the following resources:
+3. **프론트엔드와 API 연동** ✅
+    - **목표**: 프론트엔드에서 백엔드 API를 호출하여 데이터를 주고받습니다.
+    - **작업**:
+        - AI SDK 4버전 : https://sdk.vercel.ai/docs/ai-sdk-ui/chatbot
+        - Axios 또는 Fetch API를 사용하여 백엔드 API와 통신하는 함수를 작성합니다.
+        - 사용자 입력을 받아 API에 요청을 보내고, AI의 응답을 화면에 표시하는 로직을 구현합니다.
+        - 로컬 스토리지에 채팅 메시지를 저장하고 복원하는 기능을 추가합니다.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. **UI 컴포넌트를 구현** ✅
+    - **목표**: 사용자 인터페이스를 구성하는 다양한 컴포넌트를 구현합니다.
+    - **작업**:
+        - TailwindCSS를 사용하여 스타일링된 UI 컴포넌트를 작성합니다.
+        - shadcn/ui 라이브러리의 컴포넌트를 활용하여 일관된 디자인을 유지합니다.
+        - 사용자 경험을 고려하여 인터랙티브한 요소를 추가합니다.
+        - 모던한 채팅 인터페이스 구현 (3단 레이아웃: 사이드바, 채팅 영역, 연락처 관리)
+        - Avatar, Badge 등 추가 UI 컴포넌트 활용
+        - 메시지 상태 표시 (읽음 확인, 타임스탬프)
+        - 반응형 디자인 및 애니메이션 효과
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. **Vercel 배포**
+    - **목표**: 완성된 애플리케이션을 Vercel 플랫폼에 배포하여 사용자에게 제공할 수 있도록 합니다.
+    - **작업**:
+        - Vercel 계정을 생성하고 프로젝트를 연결합니다.
+        - 배포 설정을 구성하고, 필요한 환경 변수를 설정합니다.
+        - 최종적으로 애플리케이션을 배포하고, 배포된 URL을 확인합니다.
 
-## Deploy on Vercel
+## 구현된 기능
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### ✅ 완료된 기능들
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **AI 채팅 기능**
+   - OpenAI GPT-3.5-turbo 모델 사용
+   - 실시간 스트리밍 응답
+   - 메시지 히스토리 관리
+
+2. **로컬 스토리지**
+   - 채팅 메시지 자동 저장
+   - 페이지 새로고침 시 대화 기록 복원
+   - 대화 기록 삭제 기능
+
+3. **모던한 UI/UX**
+   - 3단 레이아웃 (사이드바, 채팅 영역, 연락처 관리)
+   - 반응형 디자인
+   - Avatar 컴포넌트 활용
+   - 메시지 상태 표시 (읽음 확인, 타임스탬프)
+   - 타이핑 인디케이터 애니메이션
+   - 검색 기능 (UI 준비)
+
+4. **사용자 경험**
+   - 직관적인 채팅 인터페이스
+   - 시각적 피드백 (로딩 상태, 메시지 전송 상태)
+   - 접근성 고려 (키보드 네비게이션, 스크린 리더 지원)
